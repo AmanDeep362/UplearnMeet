@@ -5,7 +5,7 @@ export default function generateMuiTheme(type, primary, secondary) {
   return responsiveFontSizes(
     createTheme({
       typography: {
-        fontFamily: ["Roboto,sans-serif"].join(","),
+        fontFamily: ["El Messiri,sans-serif"].join(","),
       },
 
       palette: {

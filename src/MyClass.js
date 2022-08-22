@@ -150,13 +150,14 @@ const MyClass = () => {
       maintainVideoAspectRatio: "maintainVideoAspectRatio",
       networkBarEnabled: "networkBarEnabled",
     };
-
+    
     Object.keys(paramKeys).forEach((key) => {
       paramKeys[key] = urlParams.get(key)
-        ? decodeURIComponent(urlParams.get(key))
-        : null;
+      ? decodeURIComponent(urlParams.get(key))
+      : null;
     });
-
+    
+    paramKeys.token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiIzMWFiNGIyZC1iZTUxLTRhYzItOTI1NS1kZTkzNjAwNzRhYjgiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MDY1MTM2OSwiZXhwIjoxNjYxMjU2MTY5fQ.R6CFn5jMAgr5o0ed-lZelEECeCOF1u60q37LvUPwxJs"
     // required options
     let configErr;
 
@@ -189,6 +190,9 @@ const MyClass = () => {
     if (typeof paramKeys.micEnabled !== "string") {
       paramKeys.micEnabled = "true";
     }
+    if (typeof paramKeys.canRemoveOtherParticipant == "string") {
+      paramKeys.canRemoveOtherParticipant = "true";
+    }
     if (typeof paramKeys.webcamEnabled !== "string") {
       paramKeys.webcamEnabled = "true";
     }
@@ -198,8 +202,11 @@ const MyClass = () => {
     if (typeof paramKeys.screenShareEnabled !== "string") {
       paramKeys.screenShareEnabled = "true";
     }
+    if (typeof paramKeys.askJoin !== "string") {
+      paramKeys.askJoin = "true";
+    }
     if (typeof paramKeys.pollEnabled !== "string") {
-      paramKeys.pollEnabled = "true";
+      paramKeys.pollEnabled = "false";
     }
     if (typeof paramKeys.whiteboardEnabled !== "string") {
       paramKeys.whiteboardEnabled = "true";
@@ -213,8 +220,11 @@ const MyClass = () => {
     if (typeof paramKeys.raiseHandEnabled !== "string") {
       paramKeys.raiseHandEnabled = "true";
     }
+    if (typeof paramKeys.canDrawOnWhiteboard !== "string") {
+      paramKeys.canDrawOnWhiteboard = "true";
+    }
     if (typeof paramKeys.recordingEnabled !== "string") {
-      paramKeys.recordingEnabled = "false";
+      paramKeys.recordingEnabled = "true";
     }
     if (typeof paramKeys.hlsEnabled !== "string") {
       paramKeys.hlsEnabled = "false";
@@ -235,7 +245,7 @@ const MyClass = () => {
     if (typeof paramKeys.canCreatePoll !== "string") {
       paramKeys.canCreatePoll = "true";
     }
-
+    
     if (paramKeys.autoStartLiveStream === "true") {
       try {
         paramKeys.liveStreamOutputs = JSON.parse(paramKeys.liveStreamOutputs);
