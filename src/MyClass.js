@@ -24,6 +24,7 @@ import useIsLGDesktop from "./utils/useIsLGDesktop";
 import useIsTab from "./utils/useIsTab";
 import { version as prebuiltSDKVersion } from "../package.json";
 import { meetingModes } from "./CONSTS";
+import axios from "axios";
 
 const MyClass = () => {
   const [meetingIdValidation, setMeetingIdValidation] = useState({
@@ -40,7 +41,6 @@ const MyClass = () => {
   });
 
   const [meetingLeft, setMeetingLeft] = useState(false);
-
   const playNotificationErr = async () => {
     const errAudio = new Audio(
       `https://static.videosdk.live/prebuilt/notification_err.mp3`
@@ -48,7 +48,10 @@ const MyClass = () => {
 
     await errAudio.play();
   };
+ 
 
+   
+  
   const getParams = ({ maxGridSize }) => {
     const location = window.location;
 
@@ -66,7 +69,7 @@ const MyClass = () => {
       pollEnabled: "pollEnabled",
       whiteboardEnabled: "whiteboardEnabled",
       raiseHandEnabled: "raiseHandEnabled",
-      //
+      usermode:"usermode",
       participantCanToggleSelfWebcam: "participantCanToggleSelfWebcam",
       participantCanToggleSelfMic: "participantCanToggleSelfMic",
       participantCanToggleRecording: "participantCanToggleRecording",
@@ -157,142 +160,284 @@ const MyClass = () => {
       : null;
     });
     
+  
+    
     paramKeys.token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiIzMWFiNGIyZC1iZTUxLTRhYzItOTI1NS1kZTkzNjAwNzRhYjgiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MDY1MTM2OSwiZXhwIjoxNjYxMjU2MTY5fQ.R6CFn5jMAgr5o0ed-lZelEECeCOF1u60q37LvUPwxJs"
     // required options
     let configErr;
-
-    if (typeof paramKeys.token !== "string") {
-      configErr = `"token" not provided`;
-      playNotificationErr();
-      // setMeetingError({ message: configErr, code: 4001, isVisible: true });
-      //
-      // throw new Error(configErr);
-    }
-    if (typeof paramKeys.meetingId !== "string") {
-      configErr = `"meetingId" not provided`;
-      playNotificationErr();
-      // setMeetingError({ message: configErr, code: 4001, isVisible: true });
-      //
-      // throw new Error(configErr);
-    }
-    if (typeof paramKeys.name !== "string") {
-      if (paramKeys.joinScreenEnabled !== "true") {
-        configErr = `"name" not provided when joinScreen is disabled`;
+    if(paramKeys.usermode ==="OCRTIRTUSN"){
+      if (typeof paramKeys.token !== "string") {
+        configErr = `"token" not provided`;
         playNotificationErr();
         // setMeetingError({ message: configErr, code: 4001, isVisible: true });
         //
         // throw new Error(configErr);
       }
-    }
-
-    // default options
-
-    if (typeof paramKeys.micEnabled !== "string") {
-      paramKeys.micEnabled = "true";
-    }
-    if (typeof paramKeys.canRemoveOtherParticipant == "string") {
-      paramKeys.canRemoveOtherParticipant = "true";
-    }
-    if (typeof paramKeys.webcamEnabled !== "string") {
-      paramKeys.webcamEnabled = "true";
-    }
-    if (typeof paramKeys.chatEnabled !== "string") {
-      paramKeys.chatEnabled = "true";
-    }
-    if (typeof paramKeys.screenShareEnabled !== "string") {
-      paramKeys.screenShareEnabled = "true";
-    }
-    if (typeof paramKeys.askJoin !== "string") {
-      paramKeys.askJoin = "true";
-    }
-    if (typeof paramKeys.pollEnabled !== "string") {
-      paramKeys.pollEnabled = "false";
-    }
-    if (typeof paramKeys.whiteboardEnabled !== "string") {
-      paramKeys.whiteboardEnabled = "true";
-    }
-    if (typeof paramKeys.participantCanToggleSelfWebcam !== "string") {
-      paramKeys.participantCanToggleSelfWebcam = "true";
-    }
-    if (typeof paramKeys.participantCanToggleSelfMic !== "string") {
-      paramKeys.participantCanToggleSelfMic = "true";
-    }
-    if (typeof paramKeys.raiseHandEnabled !== "string") {
-      paramKeys.raiseHandEnabled = "true";
-    }
-    if (typeof paramKeys.canDrawOnWhiteboard !== "string") {
-      paramKeys.canDrawOnWhiteboard = "true";
-    }
-    if (typeof paramKeys.recordingEnabled !== "string") {
-      paramKeys.recordingEnabled = "true";
-    }
-    if (typeof paramKeys.hlsEnabled !== "string") {
-      paramKeys.hlsEnabled = "false";
-    }
-    if (typeof paramKeys.poweredBy !== "string") {
-      paramKeys.poweredBy = "true";
-    }
-    if (typeof paramKeys.liveStreamEnabled !== "string") {
-      paramKeys.liveStreamEnabled = "false";
-    }
-    if (typeof paramKeys.autoStartLiveStream !== "string") {
-      paramKeys.autoStartLiveStream = "false";
-    }
-    if (typeof paramKeys.participantCanToggleLivestream !== "string") {
-      paramKeys.participantCanToggleLivestream = "false";
-    }
-
-    if (typeof paramKeys.canCreatePoll !== "string") {
-      paramKeys.canCreatePoll = "true";
-    }
-    
-    if (paramKeys.autoStartLiveStream === "true") {
-      try {
-        paramKeys.liveStreamOutputs = JSON.parse(paramKeys.liveStreamOutputs);
-        if (
-          paramKeys.liveStreamOutputs === null ||
-          !paramKeys.liveStreamOutputs.length
-        ) {
+      if (typeof paramKeys.meetingId !== "string") {
+        configErr = `"meetingId" not provided`;
+        playNotificationErr();
+        setMeetingError({ message: configErr, code: 4001, isVisible: true });
+        //
+        // throw new Error(configErr);
+      }
+      if (typeof paramKeys.name !== "string") {
+        if (paramKeys.joinScreenEnabled !== "true") {
+          configErr = `"name" not provided when joinScreen is disabled`;
+          playNotificationErr();
+          // setMeetingError({ message: configErr, code: 4001, isVisible: true });
+          //
+          // throw new Error(configErr);
+        }
+      }
+  
+      // default options
+  
+      if (typeof paramKeys.micEnabled !== "string") {
+        paramKeys.micEnabled = "true";
+      }
+      if (typeof paramKeys.canRemoveOtherParticipant !== "string") {
+        paramKeys.canRemoveOtherParticipant = "true";
+      }
+      if (typeof paramKeys.webcamEnabled !== "string") {
+        paramKeys.webcamEnabled = "true";
+      }
+      if (typeof paramKeys.participantCanEndMeeting !== "string") {
+        paramKeys.participantCanEndMeeting = "true";
+      }
+      if (typeof paramKeys.chatEnabled !== "string") {
+        paramKeys.chatEnabled = "true";
+      }
+      if (typeof paramKeys.screenShareEnabled !== "string") {
+        paramKeys.screenShareEnabled = "true";
+      }
+      if (typeof paramKeys.askJoin !== "string") {
+        paramKeys.askJoin = "true";
+      }
+      if (typeof paramKeys.pollEnabled !== "string") {
+        paramKeys.pollEnabled = "false";
+      }
+      if (typeof paramKeys.whiteboardEnabled !== "string") {
+        paramKeys.whiteboardEnabled = "true";
+      }
+      if (typeof paramKeys.participantCanToggleSelfWebcam !== "string") {
+        paramKeys.participantCanToggleSelfWebcam = "true";
+      }
+      if (typeof paramKeys.participantCanToggleSelfMic !== "string") {
+        paramKeys.participantCanToggleSelfMic = "true";
+      }
+      if (typeof paramKeys.raiseHandEnabled !== "string") {
+        paramKeys.raiseHandEnabled = "true";
+      }
+      if (typeof paramKeys.canDrawOnWhiteboard !== "string") {
+        paramKeys.canDrawOnWhiteboard = "true";
+      }
+      if (typeof paramKeys.recordingEnabled !== "string") {
+        paramKeys.recordingEnabled = "false";
+      }
+      if (typeof paramKeys.hlsEnabled !== "string") {
+        paramKeys.hlsEnabled = "false";
+      }
+      if (typeof paramKeys.poweredBy !== "string") {
+        paramKeys.poweredBy = "true";
+      }
+      if (typeof paramKeys.liveStreamEnabled !== "string") {
+        paramKeys.liveStreamEnabled = "false";
+      }
+      if (typeof paramKeys.autoStartLiveStream !== "string") {
+        paramKeys.autoStartLiveStream = "false";
+      }
+      if (typeof paramKeys.participantCanToggleLivestream !== "string") {
+        paramKeys.participantCanToggleLivestream = "false";
+      }
+  
+      if (typeof paramKeys.canCreatePoll !== "string") {
+        paramKeys.canCreatePoll = "true";
+      }
+      
+      if (paramKeys.autoStartLiveStream === "true") {
+        try {
+          paramKeys.liveStreamOutputs = JSON.parse(paramKeys.liveStreamOutputs);
+          if (
+            paramKeys.liveStreamOutputs === null ||
+            !paramKeys.liveStreamOutputs.length
+          ) {
+            paramKeys.liveStreamOutputs = [];
+          }
+        } catch (err) {
           paramKeys.liveStreamOutputs = [];
         }
-      } catch (err) {
-        paramKeys.liveStreamOutputs = [];
+      }
+  
+      if (typeof paramKeys.joinScreenEnabled !== "string") {
+        paramKeys.joinScreenEnabled = "true";
+      }
+  
+      if (
+        paramKeys.joinScreenMeetingUrl === null ||
+        !paramKeys.joinScreenMeetingUrl.length
+      ) {
+        paramKeys.joinScreenMeetingUrl = "";
+      }
+  
+      if (
+        paramKeys.joinScreenTitle === null ||
+        !paramKeys.joinScreenTitle.length
+      ) {
+        paramKeys.joinScreenTitle = "";
+      }
+  
+      if (typeof paramKeys.notificationSoundEnabled !== "string") {
+        paramKeys.notificationSoundEnabled = "true";
+      }
+  
+      if (typeof paramKeys.maintainVideoAspectRatio !== "string") {
+        paramKeys.maintainVideoAspectRatio = "false";
+      }
+  
+      if (typeof paramKeys.networkBarEnabled !== "string") {
+        paramKeys.networkBarEnabled = "true";
+      }
+  
+      if (typeof paramKeys.canPin !== "string") {
+        paramKeys.canPin = "true";
+      }
+    }
+    else {
+      if (typeof paramKeys.token !== "string") {
+        configErr = `"token" not provided`;
+        playNotificationErr();
+        // setMeetingError({ message: configErr, code: 4001, isVisible: true });
+        //
+        // throw new Error(configErr);
+      }
+      if (typeof paramKeys.meetingId !== "string") {
+        configErr = `"meetingId" not provided`;
+        playNotificationErr();
+        setMeetingError({ message: configErr, code: 4001, isVisible: true });
+        //
+        // throw new Error(configErr);
+      }
+      if (typeof paramKeys.name !== "string") {
+        if (paramKeys.joinScreenEnabled !== "true") {
+          configErr = `"name" not provided when joinScreen is disabled`;
+          playNotificationErr();
+          // setMeetingError({ message: configErr, code: 4001, isVisible: true });
+          //
+          // throw new Error(configErr);
+        }
+      }
+  
+      // default options
+  
+      if (typeof paramKeys.micEnabled !== "string") {
+        paramKeys.micEnabled = "true";
+      }
+      if (typeof paramKeys.canRemoveOtherParticipant == "string") {
+        paramKeys.canRemoveOtherParticipant = "true";
+      }
+      if (typeof paramKeys.webcamEnabled !== "string") {
+        paramKeys.webcamEnabled = "true";
+      }
+      if (typeof paramKeys.chatEnabled !== "string") {
+        paramKeys.chatEnabled = "true";
+      }
+      if (typeof paramKeys.screenShareEnabled !== "string") {
+        paramKeys.screenShareEnabled = "true";
+      }
+      if (typeof paramKeys.askJoin !== "string") {
+        paramKeys.askJoin = "true";
+      }
+      if (typeof paramKeys.pollEnabled !== "string") {
+        paramKeys.pollEnabled = "false";
+      }
+      if (typeof paramKeys.whiteboardEnabled !== "string") {
+        paramKeys.whiteboardEnabled = "false";
+      }
+      if (typeof paramKeys.participantCanToggleSelfWebcam !== "string") {
+        paramKeys.participantCanToggleSelfWebcam = "true";
+      }
+      if (typeof paramKeys.participantCanToggleSelfMic !== "string") {
+        paramKeys.participantCanToggleSelfMic = "true";
+      }
+      if (typeof paramKeys.raiseHandEnabled !== "string") {
+        paramKeys.raiseHandEnabled = "true";
+      }
+      if (typeof paramKeys.canDrawOnWhiteboard !== "string") {
+        paramKeys.canDrawOnWhiteboard = "false";
+      }
+      if (typeof paramKeys.recordingEnabled !== "string") {
+        paramKeys.recordingEnabled = "false";
+      }
+      if (typeof paramKeys.hlsEnabled !== "string") {
+        paramKeys.hlsEnabled = "false";
+      }
+      if (typeof paramKeys.poweredBy !== "string") {
+        paramKeys.poweredBy = "true";
+      }
+      if (typeof paramKeys.liveStreamEnabled !== "string") {
+        paramKeys.liveStreamEnabled = "false";
+      }
+      if (typeof paramKeys.autoStartLiveStream !== "string") {
+        paramKeys.autoStartLiveStream = "false";
+      }
+      if (typeof paramKeys.participantCanToggleLivestream !== "string") {
+        paramKeys.participantCanToggleLivestream = "false";
+      }
+  
+      if (typeof paramKeys.canCreatePoll !== "string") {
+        paramKeys.canCreatePoll = "false";
+      }
+      
+      if (paramKeys.autoStartLiveStream === "true") {
+        try {
+          paramKeys.liveStreamOutputs = JSON.parse(paramKeys.liveStreamOutputs);
+          if (
+            paramKeys.liveStreamOutputs === null ||
+            !paramKeys.liveStreamOutputs.length
+          ) {
+            paramKeys.liveStreamOutputs = [];
+          }
+        } catch (err) {
+          paramKeys.liveStreamOutputs = [];
+        }
+      }
+  
+      if (typeof paramKeys.joinScreenEnabled !== "string") {
+        paramKeys.joinScreenEnabled = "true";
+      }
+  
+      if (
+        paramKeys.joinScreenMeetingUrl === null ||
+        !paramKeys.joinScreenMeetingUrl.length
+      ) {
+        paramKeys.joinScreenMeetingUrl = "";
+      }
+  
+      if (
+        paramKeys.joinScreenTitle === null ||
+        !paramKeys.joinScreenTitle.length
+      ) {
+        paramKeys.joinScreenTitle = "";
+      }
+  
+      if (typeof paramKeys.notificationSoundEnabled !== "string") {
+        paramKeys.notificationSoundEnabled = "true";
+      }
+  
+      if (typeof paramKeys.maintainVideoAspectRatio !== "string") {
+        paramKeys.maintainVideoAspectRatio = "false";
+      }
+  
+      if (typeof paramKeys.networkBarEnabled !== "string") {
+        paramKeys.networkBarEnabled = "true";
+      }
+  
+      if (typeof paramKeys.canPin !== "string") {
+        paramKeys.canPin = "true";
       }
     }
 
-    if (typeof paramKeys.joinScreenEnabled !== "string") {
-      paramKeys.joinScreenEnabled = "true";
-    }
-
-    if (
-      paramKeys.joinScreenMeetingUrl === null ||
-      !paramKeys.joinScreenMeetingUrl.length
-    ) {
-      paramKeys.joinScreenMeetingUrl = "";
-    }
-
-    if (
-      paramKeys.joinScreenTitle === null ||
-      !paramKeys.joinScreenTitle.length
-    ) {
-      paramKeys.joinScreenTitle = "";
-    }
-
-    if (typeof paramKeys.notificationSoundEnabled !== "string") {
-      paramKeys.notificationSoundEnabled = "true";
-    }
-
-    if (typeof paramKeys.maintainVideoAspectRatio !== "string") {
-      paramKeys.maintainVideoAspectRatio = "false";
-    }
-
-    if (typeof paramKeys.networkBarEnabled !== "string") {
-      paramKeys.networkBarEnabled = "true";
-    }
-
-    if (typeof paramKeys.canPin !== "string") {
-      paramKeys.canPin = "true";
-    }
+  
 
     switch (paramKeys?.layoutType?.toUpperCase()) {
       case meetingLayouts.GRID:
@@ -471,7 +616,6 @@ const MyClass = () => {
       });
     }
   };
-
   useEffect(() => {
     if (paramKeys.meetingId && paramKeys.token) {
       validateMeetingId({
@@ -487,6 +631,7 @@ const MyClass = () => {
 console.log(paramKeys);
   return (
     <>
+  
       {meetingLeft ? (
         paramKeys.isRecorder === "true" ? null : (
           <MeetingLeftScreen

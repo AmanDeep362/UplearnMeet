@@ -658,6 +658,7 @@ const GoLiveBTN = ({ isMobile, isTab }) => {
           isRequestProcessing={isRequestProcessing}
         />
       ) : (
+       
         <OutlineIconTextButton
           bgColor={"#D32F2F"}
           onClick={_handleClick}
@@ -1462,9 +1463,11 @@ const TopBar = ({ topBarHeight }) => {
               <ParticipantsBTN />
             ) : icon.buttonType === topBarButtonTypes.CHAT ? (
               <ChatBTN />
-            ) : icon.buttonType === topBarButtonTypes.ACTIVITIES ? (
+            ) :
+             icon.buttonType === topBarButtonTypes.ACTIVITIES ? (
               <ActivitiesBTN />
-            ) : icon.buttonType === topBarButtonTypes.END_CALL ? (
+            ) 
+            : icon.buttonType === topBarButtonTypes.END_CALL ? (
               <EndCallBTN />
             ) : icon.buttonType === topBarButtonTypes.RECORDING ? (
               <RecordingBTN />
@@ -1632,15 +1635,15 @@ const TopBar = ({ topBarHeight }) => {
         {brandingEnabled && (
           <>
             <img
-              alt={"App Logo"}
+              alt={"https://res.cloudinary.com/uplearn/image/upload/v1661179752/qj0ckv848zwaihw1zmhd.png"}
               style={{
                 display: "inline-block",
                 height: topBarHeight - theme.spacing(2),
               }}
               src={
-                defaultBrandLogoUrl ||
-                brandLogoURL ||
-                `https://static.videosdk.live/prebuilt/videosdk_logo_circle.png`
+                // defaultBrandLogoUrl ||
+                // brandLogoURL ||
+                `https://res.cloudinary.com/uplearn/image/upload/v1661179752/qj0ckv848zwaihw1zmhd.png`
               }
               onError={() => {
                 setDefaultBrandLogoUrl(
@@ -1678,7 +1681,7 @@ const TopBar = ({ topBarHeight }) => {
                   <Link
                     style={{ textDecorationColor: "#fa3a57" }}
                     target={"_blank"}
-                    href={"https://videosdk.live"}
+                    href={"https://localhost/3000"}
                   >
                     <Typography
                       style={{
@@ -1687,7 +1690,7 @@ const TopBar = ({ topBarHeight }) => {
                         fontSize: "0.9rem",
                       }}
                     >
-                      videosdk.live
+                      Uplearn
                     </Typography>
                   </Link>
                 </Typography>
@@ -1731,9 +1734,11 @@ const TopBar = ({ topBarHeight }) => {
                         <ParticipantsBTN />
                       ) : buttonType === topBarButtonTypes.CHAT ? (
                         <ChatBTN />
-                      ) : buttonType === topBarButtonTypes.ACTIVITIES ? (
-                        <ActivitiesBTN />
-                      ) : buttonType === topBarButtonTypes.END_CALL ? (
+                      ) 
+                      // : buttonType === topBarButtonTypes.ACTIVITIES ? (
+                      //   <ActivitiesBTN />
+                      // ) 
+                      : buttonType === topBarButtonTypes.END_CALL ? (
                         <EndCallBTN />
                       ) : buttonType === topBarButtonTypes.RECORDING ? (
                         <RecordingBTN />
