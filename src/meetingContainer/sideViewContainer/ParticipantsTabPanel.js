@@ -401,7 +401,7 @@ function ParticipantListItem({
                 <Box ml={1} mr={0}>
                   <Tooltip title={`Remove`}>
                     <IconButton
-                      disabled={!expanded}
+                      // disabled={!expanded}
                       size="small"
                       onClick={(e) => {
                         e.stopPropagation();

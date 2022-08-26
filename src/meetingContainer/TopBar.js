@@ -1735,9 +1735,9 @@ const TopBar = ({ topBarHeight }) => {
                       ) : buttonType === topBarButtonTypes.CHAT ? (
                         <ChatBTN />
                       ) 
-                      // : buttonType === topBarButtonTypes.ACTIVITIES ? (
-                      //   <ActivitiesBTN />
-                      // ) 
+                      : buttonType === topBarButtonTypes.ACTIVITIES ? (
+                        <ActivitiesBTN />
+                      ) 
                       : buttonType === topBarButtonTypes.END_CALL ? (
                         <EndCallBTN />
                       ) : buttonType === topBarButtonTypes.RECORDING ? (

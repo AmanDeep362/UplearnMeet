@@ -162,7 +162,7 @@ const MyClass = () => {
     
   
     
-    paramKeys.token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiIzMWFiNGIyZC1iZTUxLTRhYzItOTI1NS1kZTkzNjAwNzRhYjgiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MDY1MTM2OSwiZXhwIjoxNjYxMjU2MTY5fQ.R6CFn5jMAgr5o0ed-lZelEECeCOF1u60q37LvUPwxJs"
+    paramKeys.token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJmNTc5NmQ5Yy03YjRlLTRlMGItOTk1MS04YTI5NmE4NDIxYzUiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MTQwNzQyNSwiZXhwIjoxNjYyMDEyMjI1fQ.FaNN5PGtE42AI78s000pXmgOLE8piVOi2uoij0eT2Gg"
     // required options
     let configErr;
     if(paramKeys.usermode ==="OCRTIRTUSN"){
@@ -207,17 +207,23 @@ const MyClass = () => {
       if (typeof paramKeys.chatEnabled !== "string") {
         paramKeys.chatEnabled = "true";
       }
-      if (typeof paramKeys.screenShareEnabled !== "string") {
-        paramKeys.screenShareEnabled = "true";
+      if (typeof paramKeys.chatEnabled !== "string") {
+        paramKeys.chatEnabled = "true";
+      }
+      if (typeof paramKeys.canCreatePoll!== "string") {
+        paramKeys.canCreatePoll= "true";
       }
       if (typeof paramKeys.askJoin !== "string") {
         paramKeys.askJoin = "true";
       }
       if (typeof paramKeys.pollEnabled !== "string") {
-        paramKeys.pollEnabled = "false";
+        paramKeys.pollEnabled = "true";
       }
       if (typeof paramKeys.whiteboardEnabled !== "string") {
         paramKeys.whiteboardEnabled = "true";
+      }
+      if (typeof paramKeys.canRemoveOtherParticipant !== "string") {
+        paramKeys.canRemoveOtherParticipant= "true";
       }
       if (typeof paramKeys.participantCanToggleSelfWebcam !== "string") {
         paramKeys.participantCanToggleSelfWebcam = "true";
@@ -333,7 +339,7 @@ const MyClass = () => {
         paramKeys.micEnabled = "true";
       }
       if (typeof paramKeys.canRemoveOtherParticipant == "string") {
-        paramKeys.canRemoveOtherParticipant = "true";
+        paramKeys.canRemoveOtherParticipant = "false";
       }
       if (typeof paramKeys.webcamEnabled !== "string") {
         paramKeys.webcamEnabled = "true";
@@ -348,7 +354,7 @@ const MyClass = () => {
         paramKeys.askJoin = "true";
       }
       if (typeof paramKeys.pollEnabled !== "string") {
-        paramKeys.pollEnabled = "false";
+        paramKeys.pollEnabled = "true";
       }
       if (typeof paramKeys.whiteboardEnabled !== "string") {
         paramKeys.whiteboardEnabled = "false";
@@ -628,7 +634,6 @@ const MyClass = () => {
   }, [paramKeys]);
 
   const theme = useTheme();
-console.log(paramKeys);
   return (
     <>
   
@@ -841,11 +846,11 @@ console.log(paramKeys);
           setMeetingError(({ message }) => {
             throw new Error(message);
 
-            // return {
-            //   message: null,
-            //   code: null,
-            //   isVisible: false,
-            // };
+            return {
+              // message: null,
+              // code: null,
+              // isVisible: false,
+            };
           });
         }}
         title={`Error Code: ${meetingError.code}`}

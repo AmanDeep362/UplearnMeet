@@ -71,7 +71,7 @@ const ActivitiesTabPanel = ({ panelHeight }) => {
         // },
       ].map(({ Icon, primary, secondary, disabled, onClick }, i) => (
         <ButtonBase
-          disabled={disabled}
+          // disabled={disabled}
           onClick={onClick}
           style={{
             display: "flex",
