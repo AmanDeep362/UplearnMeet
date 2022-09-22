@@ -5,13 +5,12 @@ import App from "./app";
 import reportWebVitals from "./reportWebVitals";
 import generateMuiTheme from "./mui/theme";
 import { ThemeProvider } from "@material-ui/styles";
-import { Link } from "react-router-dom";
-import MyClass from "./MyClass";
+
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={generateMuiTheme()}>
-      <MyClass />
+      <App />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
