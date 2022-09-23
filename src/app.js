@@ -48,7 +48,10 @@ const App = () => {
 
     await errAudio.play();
   };
+ 
 
+   
+  
   const getParams = ({ maxGridSize }) => {
     const location = window.location;
 
@@ -66,7 +69,7 @@ const App = () => {
       pollEnabled: "pollEnabled",
       whiteboardEnabled: "whiteboardEnabled",
       raiseHandEnabled: "raiseHandEnabled",
-      usermode: "usermode",
+      usermode:"usermode",
       participantCanToggleSelfWebcam: "participantCanToggleSelfWebcam",
       participantCanToggleSelfMic: "participantCanToggleSelfMic",
       participantCanToggleRecording: "participantCanToggleRecording",
@@ -150,18 +153,19 @@ const App = () => {
       maintainVideoAspectRatio: "maintainVideoAspectRatio",
       networkBarEnabled: "networkBarEnabled",
     };
-
+    
     Object.keys(paramKeys).forEach((key) => {
       paramKeys[key] = urlParams.get(key)
-        ? decodeURIComponent(urlParams.get(key))
-        : null;
+      ? decodeURIComponent(urlParams.get(key))
+      : null;
     });
-
-    paramKeys.token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJmMTY5NWE4Yi04ZmMxLTRhNWItYTA2OS0xNjUzNWFjZTU0MWYiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MzEzMDA1MiwiZXhwIjoxNjYzNzM0ODUyfQ.Wz7bneCpYWALRH5G1n6W8zIv3WdIFFzglGTuUBf8-Do";
+    
+  
+    
+    paramKeys.token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJmMTY5NWE4Yi04ZmMxLTRhNWItYTA2OS0xNjUzNWFjZTU0MWYiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MzkwODE5NSwiZXhwIjoxNjY0NTEyOTk1fQ.xqJ7To2SWTMk-_bozqmgyYC4wH-NNGhMAzQPS57AQ0Y"
     // required options
     let configErr;
-    if (paramKeys.usermode === "OCRTIRTUSN") {
+    if(paramKeys.usermode ==="OCRTIRTUSN"){
       if (typeof paramKeys.token !== "string") {
         configErr = `"token" not provided`;
         playNotificationErr();
@@ -185,9 +189,9 @@ const App = () => {
           // throw new Error(configErr);
         }
       }
-
+  
       // default options
-
+  
       if (typeof paramKeys.micEnabled !== "string") {
         paramKeys.micEnabled = "true";
       }
@@ -206,8 +210,8 @@ const App = () => {
       if (typeof paramKeys.chatEnabled !== "string") {
         paramKeys.chatEnabled = "true";
       }
-      if (typeof paramKeys.canCreatePoll !== "string") {
-        paramKeys.canCreatePoll = "true";
+      if (typeof paramKeys.canCreatePoll!== "string") {
+        paramKeys.canCreatePoll= "true";
       }
       if (typeof paramKeys.askJoin !== "string") {
         paramKeys.askJoin = "true";
@@ -219,7 +223,7 @@ const App = () => {
         paramKeys.whiteboardEnabled = "true";
       }
       if (typeof paramKeys.canRemoveOtherParticipant !== "string") {
-        paramKeys.canRemoveOtherParticipant = "true";
+        paramKeys.canRemoveOtherParticipant= "true";
       }
       if (typeof paramKeys.participantCanToggleSelfWebcam !== "string") {
         paramKeys.participantCanToggleSelfWebcam = "true";
@@ -251,11 +255,11 @@ const App = () => {
       if (typeof paramKeys.participantCanToggleLivestream !== "string") {
         paramKeys.participantCanToggleLivestream = "false";
       }
-
+  
       if (typeof paramKeys.canCreatePoll !== "string") {
         paramKeys.canCreatePoll = "true";
       }
-
+      
       if (paramKeys.autoStartLiveStream === "true") {
         try {
           paramKeys.liveStreamOutputs = JSON.parse(paramKeys.liveStreamOutputs);
@@ -269,41 +273,42 @@ const App = () => {
           paramKeys.liveStreamOutputs = [];
         }
       }
-
+  
       if (typeof paramKeys.joinScreenEnabled !== "string") {
         paramKeys.joinScreenEnabled = "true";
       }
-
+  
       if (
         paramKeys.joinScreenMeetingUrl === null ||
         !paramKeys.joinScreenMeetingUrl.length
       ) {
         paramKeys.joinScreenMeetingUrl = "";
       }
-
+  
       if (
         paramKeys.joinScreenTitle === null ||
         !paramKeys.joinScreenTitle.length
       ) {
         paramKeys.joinScreenTitle = "";
       }
-
+  
       if (typeof paramKeys.notificationSoundEnabled !== "string") {
         paramKeys.notificationSoundEnabled = "true";
       }
-
+  
       if (typeof paramKeys.maintainVideoAspectRatio !== "string") {
         paramKeys.maintainVideoAspectRatio = "false";
       }
-
+  
       if (typeof paramKeys.networkBarEnabled !== "string") {
         paramKeys.networkBarEnabled = "true";
       }
-
+  
       if (typeof paramKeys.canPin !== "string") {
         paramKeys.canPin = "true";
       }
-    } else {
+    }
+    else {
       if (typeof paramKeys.token !== "string") {
         configErr = `"token" not provided`;
         playNotificationErr();
@@ -327,9 +332,9 @@ const App = () => {
           // throw new Error(configErr);
         }
       }
-
+  
       // default options
-
+  
       if (typeof paramKeys.micEnabled !== "string") {
         paramKeys.micEnabled = "true";
       }
@@ -384,11 +389,11 @@ const App = () => {
       if (typeof paramKeys.participantCanToggleLivestream !== "string") {
         paramKeys.participantCanToggleLivestream = "false";
       }
-
+  
       if (typeof paramKeys.canCreatePoll !== "string") {
         paramKeys.canCreatePoll = "false";
       }
-
+      
       if (paramKeys.autoStartLiveStream === "true") {
         try {
           paramKeys.liveStreamOutputs = JSON.parse(paramKeys.liveStreamOutputs);
@@ -402,41 +407,43 @@ const App = () => {
           paramKeys.liveStreamOutputs = [];
         }
       }
-
+  
       if (typeof paramKeys.joinScreenEnabled !== "string") {
         paramKeys.joinScreenEnabled = "true";
       }
-
+  
       if (
         paramKeys.joinScreenMeetingUrl === null ||
         !paramKeys.joinScreenMeetingUrl.length
       ) {
         paramKeys.joinScreenMeetingUrl = "";
       }
-
+  
       if (
         paramKeys.joinScreenTitle === null ||
         !paramKeys.joinScreenTitle.length
       ) {
         paramKeys.joinScreenTitle = "";
       }
-
+  
       if (typeof paramKeys.notificationSoundEnabled !== "string") {
         paramKeys.notificationSoundEnabled = "true";
       }
-
+  
       if (typeof paramKeys.maintainVideoAspectRatio !== "string") {
         paramKeys.maintainVideoAspectRatio = "false";
       }
-
+  
       if (typeof paramKeys.networkBarEnabled !== "string") {
         paramKeys.networkBarEnabled = "true";
       }
-
+  
       if (typeof paramKeys.canPin !== "string") {
         paramKeys.canPin = "true";
       }
     }
+
+  
 
     switch (paramKeys?.layoutType?.toUpperCase()) {
       case meetingLayouts.GRID:
@@ -629,6 +636,7 @@ const App = () => {
   const theme = useTheme();
   return (
     <>
+  
       {meetingLeft ? (
         paramKeys.isRecorder === "true" ? null : (
           <MeetingLeftScreen

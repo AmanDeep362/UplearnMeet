@@ -5,8 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import generateMuiTheme from "./mui/theme";
 import { ThemeProvider } from "@material-ui/styles";
-// import { Link } from "react-router-dom";
-// import MyClass from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
