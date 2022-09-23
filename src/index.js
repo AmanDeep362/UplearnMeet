@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./app";
+import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import generateMuiTheme from "./mui/theme";
 import { ThemeProvider } from "@material-ui/styles";
-import { Link } from "react-router-dom";
-import MyClass from "./MyClass";
+// import { Link } from "react-router-dom";
+// import MyClass from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={generateMuiTheme()}>
-      <MyClass />
+      <App />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
