@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/UplearMeet/static/css/main.2d236448.chunk.css",
-    "main.js": "/UplearMeet/static/js/main.1a666a99.chunk.js",
-    "main.js.map": "/UplearMeet/static/js/main.1a666a99.chunk.js.map",
-    "runtime-main.js": "/UplearMeet/static/js/runtime-main.c1d51f96.js",
-    "runtime-main.js.map": "/UplearMeet/static/js/runtime-main.c1d51f96.js.map",
-    "static/css/2.27c67e9f.chunk.css": "/UplearMeet/static/css/2.27c67e9f.chunk.css",
-    "static/js/2.873f1bf8.chunk.js": "/UplearMeet/static/js/2.873f1bf8.chunk.js",
-    "static/js/2.873f1bf8.chunk.js.map": "/UplearMeet/static/js/2.873f1bf8.chunk.js.map",
-    "static/js/3.8fc4ef05.chunk.js": "/UplearMeet/static/js/3.8fc4ef05.chunk.js",
-    "static/js/3.8fc4ef05.chunk.js.map": "/UplearMeet/static/js/3.8fc4ef05.chunk.js.map",
-    "index.html": "/UplearMeet/index.html",
-    "static/css/2.27c67e9f.chunk.css.map": "/UplearMeet/static/css/2.27c67e9f.chunk.css.map",
-    "static/css/main.2d236448.chunk.css.map": "/UplearMeet/static/css/main.2d236448.chunk.css.map",
-    "static/js/2.873f1bf8.chunk.js.LICENSE.txt": "/UplearMeet/static/js/2.873f1bf8.chunk.js.LICENSE.txt"
+    "main.css": "/UplearnMeet/static/css/main.2d236448.chunk.css",
+    "main.js": "/UplearnMeet/static/js/main.0f49bbc6.chunk.js",
+    "main.js.map": "/UplearnMeet/static/js/main.0f49bbc6.chunk.js.map",
+    "runtime-main.js": "/UplearnMeet/static/js/runtime-main.6956885b.js",
+    "runtime-main.js.map": "/UplearnMeet/static/js/runtime-main.6956885b.js.map",
+    "static/css/2.27c67e9f.chunk.css": "/UplearnMeet/static/css/2.27c67e9f.chunk.css",
+    "static/js/2.873f1bf8.chunk.js": "/UplearnMeet/static/js/2.873f1bf8.chunk.js",
+    "static/js/2.873f1bf8.chunk.js.map": "/UplearnMeet/static/js/2.873f1bf8.chunk.js.map",
+    "static/js/3.8fc4ef05.chunk.js": "/UplearnMeet/static/js/3.8fc4ef05.chunk.js",
+    "static/js/3.8fc4ef05.chunk.js.map": "/UplearnMeet/static/js/3.8fc4ef05.chunk.js.map",
+    "index.html": "/UplearnMeet/index.html",
+    "static/css/2.27c67e9f.chunk.css.map": "/UplearnMeet/static/css/2.27c67e9f.chunk.css.map",
+    "static/css/main.2d236448.chunk.css.map": "/UplearnMeet/static/css/main.2d236448.chunk.css.map",
+    "static/js/2.873f1bf8.chunk.js.LICENSE.txt": "/UplearnMeet/static/js/2.873f1bf8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.c1d51f96.js",
+    "static/js/runtime-main.6956885b.js",
     "static/css/2.27c67e9f.chunk.css",
     "static/js/2.873f1bf8.chunk.js",
     "static/css/main.2d236448.chunk.css",
-    "static/js/main.1a666a99.chunk.js"
+    "static/js/main.0f49bbc6.chunk.js"
   ]
 }
